@@ -1,0 +1,235 @@
+﻿node.exe : npm verbose cli C:\Program Files\nodejs\node.exe C:\Program Files\nodejs\node_modules\npm\bin\npm-cli.js
+At C:\Program Files\nodejs\npm.ps1:29 char:3
++   & $NODE_EXE $NPM_CLI_JS $args
++   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (npm verbose cli...\bin\npm-cli.js:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+npm info using npm@10.9.0
+npm info using node@v22.12.0
+npm verbose title npm test
+npm verbose argv "test" "--runInBand" "--loglevel" "verbose"
+npm verbose logfile logs-max:10 dir:C:\Users\bhavy tanna\AppData\Local\npm-cache\_logs\2026-03-11T13_21_15_265Z-
+npm verbose logfile C:\Users\bhavy tanna\AppData\Local\npm-cache\_logs\2026-03-11T13_21_15_265Z-debug-0.log
+
+> mandirledger-backend@1.0.0 test
+> jest --runInBand
+
+(node:20604) [MONGOOSE] Warning: Duplicate schema index on {"phone":1} found. This is often due to declaring an index using both "index: true" and 
+"schema.index()". Please remove the duplicate index definition.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:20604) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+[0mPOST /api/members [32m201[0m 64.729 ms - 265[0m
+[0mPOST /api/donations [32m201[0m 14.770 ms - 339[0m
+[0mGET /api/pending?year=2026 [32m200[0m 40.663 ms - 183[0m
+[0mPOST /api/receipts/from-donation/D0001 [32m201[0m 12.664 ms - 325[0m
+[0mGET /api/receipts/R00001/pdf [32m200[0m 106.731 ms - -[0m
+[0mGET /api/activity-logs [32m200[0m 6.516 ms - 802[0m
+FAIL test/apiFlow.test.js (7.945 s)
+  ΓùÅ reject write operations without actor headers
+
+    Contributor is required. Provide x-actor-name and x-actor-phone headers.
+
+    [0m [90m 10 |[39m [36mfunction[39m requireActor(req) {
+     [90m 11 |[39m   [36mif[39m ([33m![39mreq[33m.[39mactor) {
+    [31m[1m>[22m[39m[90m 12 |[39m     [36mthrow[39m [36mnew[39m [33mHttpError[39m([35m400[39m[33m,[39m [32m'Contributor is required. Provide 
+x-actor-name and x-actor-phone headers.'[39m)[33m;[39m
+     [90m    |[39m           [31m[1m^[22m[39m
+     [90m 13 |[39m   }
+     [90m 14 |[39m }
+     [90m 15 |[39m[0m
+
+      at requireActor (src/controllers/membersController.js:12:11)
+      at requireActor (src/controllers/membersController.js:17:3)
+      at Layer.handle [as handle_request] (node_modules/express/lib/router/layer.js:95:5)
+      at next (node_modules/express/lib/router/route.js:149:13)
+      at Route.dispatch (node_modules/express/lib/router/route.js:119:3)
+      at Layer.handle [as handle_request] (node_modules/express/lib/router/layer.js:95:5)
+      at node_modules/express/lib/router/index.js:284:15
+      at Function.process_params (node_modules/express/lib/router/index.js:346:12)
+      at next (node_modules/express/lib/router/index.js:280:10)
+      at Function.handle (node_modules/express/lib/router/index.js:175:3)
+      at router (node_modules/express/lib/router/index.js:47:12)
+      at Layer.handle [as handle_request] (node_modules/express/lib/router/layer.js:95:5)
+      at trim_prefix (node_modules/express/lib/router/index.js:328:13)
+      at node_modules/express/lib/router/index.js:286:9
+      at Function.process_params (node_modules/express/lib/router/index.js:346:12)
+      at next (node_modules/express/lib/router/index.js:280:10)
+      at next (src/middleware/actorMiddleware.js:17:3)
+      at Layer.handle [as handle_request] (node_modules/express/lib/router/layer.js:95:5)
+      at trim_prefix (node_modules/express/lib/router/index.js:328:13)
+      at node_modules/express/lib/router/index.js:286:9
+      at Function.process_params (node_modules/express/lib/router/index.js:346:12)
+      at next (node_modules/express/lib/router/index.js:280:10)
+      at logger (node_modules/morgan/index.js:144:5)
+      at Layer.handle [as handle_request] (node_modules/express/lib/router/layer.js:95:5)
+      at trim_prefix (node_modules/express/lib/router/index.js:328:13)
+      at node_modules/express/lib/router/index.js:286:9
+      at Function.process_params (node_modules/express/lib/router/index.js:346:12)
+      at next (node_modules/express/lib/router/index.js:280:10)
+      at node_modules/body-parser/lib/read.js:137:5
+      at invokeCallback (node_modules/raw-body/index.js:238:16)
+      at done (node_modules/raw-body/index.js:227:7)
+      at IncomingMessage.onEnd (node_modules/raw-body/index.js:287:7)
+
+  ΓùÅ reject write operations without actor headers
+
+    thrown: "Exceeded timeout of 5000 ms for a test.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+    [0m [90m 83 |[39m })[33m;[39m
+     [90m 84 |[39m
+    [31m[1m>[22m[39m[90m 85 |[39m test([32m'reject write operations without actor headers'[39m[33m,[39m [36masync[39m () [33m=>[39m {
+     [90m    |[39m [31m[1m^[22m[39m
+     [90m 86 |[39m   [36mawait[39m request(app)
+     [90m 87 |[39m     [33m.[39mpost([32m'/api/members'[39m)
+     [90m 88 |[39m     [33m.[39msend({ name[33m:[39m [32m'X'[39m[33m,[39m phone[33m:[39m [32m'123456'[39m })[0m
+
+      at Object.test (test/apiFlow.test.js:85:1)
+
+(node:20604) [MONGOOSE] Warning: Duplicate schema index on {"phone":1} found. This is often due to declaring an index using both "index: true" and 
+"schema.index()". Please remove the duplicate index definition.
+FAIL test/donationValidation.test.js (10.765 s)
+  ΓùÅ donor_name required when member_id not provided
+
+    donor_name is required if member_id is not provided
+
+    [0m [90m 28 |[39m
+     [90m 29 |[39m   [36mif[39m ([33m![39mdonorName) {
+    [31m[1m>[22m[39m[90m 30 |[39m     [36mthrow[39m [36mnew[39m [33mHttpError[39m([35m400[39m[33m,[39m [32m'donor_name is required if 
+member_id is not provided'[39m)[33m;[39m
+     [90m    |[39m           [31m[1m^[22m[39m
+     [90m 31 |[39m   }
+     [90m 32 |[39m
+     [90m 33 |[39m   [36mconst[39m donation_id [33m=[39m [36mawait[39m generateId({ key[33m:[39m [32m'donation'[39m[33m,[39m prefix[33m:[39m 
+[32m'D'[39m[33m,[39m width[33m:[39m [35m4[39m })[33m;[39m[0m
+
+      at createDonation (src/controllers/donationsController.js:30:11)
+      at Layer.handle [as handle_request] (node_modules/express/lib/router/layer.js:95:5)
+      at next (node_modules/express/lib/router/route.js:149:13)
+      at Route.dispatch (node_modules/express/lib/router/route.js:119:3)
+      at Layer.handle [as handle_request] (node_modules/express/lib/router/layer.js:95:5)
+      at node_modules/express/lib/router/index.js:284:15
+      at Function.process_params (node_modules/express/lib/router/index.js:346:12)
+      at next (node_modules/express/lib/router/index.js:280:10)
+      at Function.handle (node_modules/express/lib/router/index.js:175:3)
+      at router (node_modules/express/lib/router/index.js:47:12)
+      at Layer.handle [as handle_request] (node_modules/express/lib/router/layer.js:95:5)
+      at trim_prefix (node_modules/express/lib/router/index.js:328:13)
+      at node_modules/express/lib/router/index.js:286:9
+      at Function.process_params (node_modules/express/lib/router/index.js:346:12)
+      at next (node_modules/express/lib/router/index.js:280:10)
+      at next (src/middleware/actorMiddleware.js:17:3)
+      at Layer.handle [as handle_request] (node_modules/express/lib/router/layer.js:95:5)
+      at trim_prefix (node_modules/express/lib/router/index.js:328:13)
+      at node_modules/express/lib/router/index.js:286:9
+      at Function.process_params (node_modules/express/lib/router/index.js:346:12)
+      at next (node_modules/express/lib/router/index.js:280:10)
+      at logger (node_modules/morgan/index.js:144:5)
+      at Layer.handle [as handle_request] (node_modules/express/lib/router/layer.js:95:5)
+      at trim_prefix (node_modules/express/lib/router/index.js:328:13)
+      at node_modules/express/lib/router/index.js:286:9
+      at Function.process_params (node_modules/express/lib/router/index.js:346:12)
+      at next (node_modules/express/lib/router/index.js:280:10)
+      at node_modules/body-parser/lib/read.js:137:5
+      at invokeCallback (node_modules/raw-body/index.js:238:16)
+      at done (node_modules/raw-body/index.js:227:7)
+      at IncomingMessage.onEnd (node_modules/raw-body/index.js:287:7)
+
+  ΓùÅ donor_name required when member_id not provided
+
+    thrown: "Exceeded timeout of 5000 ms for a test.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+    [0m [90m 23 |[39m })[33m;[39m
+     [90m 24 |[39m
+    [31m[1m>[22m[39m[90m 25 |[39m test([32m'donor_name required when member_id not provided'[39m[33m,[39m [36masync[39m () [33m=>[39m {
+     [90m    |[39m [31m[1m^[22m[39m
+     [90m 26 |[39m   [36mawait[39m request(app)
+     [90m 27 |[39m     [33m.[39mpost([32m'/api/donations'[39m)
+     [90m 28 |[39m     [33m.[39m[36mset[39m(actorHeaders)[0m
+
+      at Object.test (test/donationValidation.test.js:25:1)
+
+  ΓùÅ amount must be > 0
+
+    ZodError: [
+      {
+        "code": "too_small",
+        "minimum": 0,
+        "type": "number",
+        "inclusive": false,
+        "exact": false,
+        "message": "Number must be greater than 0",
+        "path": [
+          "amount"
+        ]
+      }
+    ]
+
+    [0m [90m 16 |[39m   requireActor(req)[33m;[39m
+     [90m 17 |[39m
+    [31m[1m>[22m[39m[90m 18 |[39m   [36mconst[39m data [33m=[39m createDonationSchema[33m.[39mparse(req[33m.[39mbody [33m||[39m {})[33m;[39m
+     [90m    |[39m                                     [31m[1m^[22m[39m
+     [90m 19 |[39m
+     [90m 20 |[39m   [36mlet[39m donorName [33m=[39m (data[33m.[39mdonor_name [33m||[39m [32m''[39m)[33m.[39mtrim()[33m;[39m
+     [90m 21 |[39m   [36mlet[39m member [33m=[39m [36mnull[39m[33m;[39m[0m
+
+      at Object.get error [as error] (node_modules/zod/v3/types.cjs:45:31)
+      at ZodObject.parse (node_modules/zod/v3/types.cjs:120:22)
+      at parse (src/controllers/donationsController.js:18:37)
+      at Layer.handle [as handle_request] (node_modules/express/lib/router/layer.js:95:5)
+      at next (node_modules/express/lib/router/route.js:149:13)
+      at Route.dispatch (node_modules/express/lib/router/route.js:119:3)
+      at Layer.handle [as handle_request] (node_modules/express/lib/router/layer.js:95:5)
+      at node_modules/express/lib/router/index.js:284:15
+      at Function.process_params (node_modules/express/lib/router/index.js:346:12)
+      at next (node_modules/express/lib/router/index.js:280:10)
+      at Function.handle (node_modules/express/lib/router/index.js:175:3)
+      at router (node_modules/express/lib/router/index.js:47:12)
+      at Layer.handle [as handle_request] (node_modules/express/lib/router/layer.js:95:5)
+      at trim_prefix (node_modules/express/lib/router/index.js:328:13)
+      at node_modules/express/lib/router/index.js:286:9
+      at Function.process_params (node_modules/express/lib/router/index.js:346:12)
+      at next (node_modules/express/lib/router/index.js:280:10)
+      at next (src/middleware/actorMiddleware.js:17:3)
+      at Layer.handle [as handle_request] (node_modules/express/lib/router/layer.js:95:5)
+      at trim_prefix (node_modules/express/lib/router/index.js:328:13)
+      at node_modules/express/lib/router/index.js:286:9
+      at Function.process_params (node_modules/express/lib/router/index.js:346:12)
+      at next (node_modules/express/lib/router/index.js:280:10)
+      at logger (node_modules/morgan/index.js:144:5)
+      at Layer.handle [as handle_request] (node_modules/express/lib/router/layer.js:95:5)
+      at trim_prefix (node_modules/express/lib/router/index.js:328:13)
+      at node_modules/express/lib/router/index.js:286:9
+      at Function.process_params (node_modules/express/lib/router/index.js:346:12)
+      at next (node_modules/express/lib/router/index.js:280:10)
+      at node_modules/body-parser/lib/read.js:137:5
+      at invokeCallback (node_modules/raw-body/index.js:238:16)
+      at done (node_modules/raw-body/index.js:227:7)
+      at IncomingMessage.onEnd (node_modules/raw-body/index.js:287:7)
+
+  ΓùÅ amount must be > 0
+
+    thrown: "Exceeded timeout of 5000 ms for a test.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+    [0m [90m 34 |[39m })[33m;[39m
+     [90m 35 |[39m
+    [31m[1m>[22m[39m[90m 36 |[39m test([32m'amount must be > 0'[39m[33m,[39m [36masync[39m () [33m=>[39m {
+     [90m    |[39m [31m[1m^[22m[39m
+     [90m 37 |[39m   [36mawait[39m request(app)
+     [90m 38 |[39m     [33m.[39mpost([32m'/api/donations'[39m)
+     [90m 39 |[39m     [33m.[39m[36mset[39m(actorHeaders)[0m
+
+      at Object.test (test/donationValidation.test.js:36:1)
+
+Test Suites: 2 failed, 2 total
+Tests:       3 failed, 1 passed, 4 total
+Snapshots:   0 total
+Time:        18.767 s, estimated 32 s
+Ran all test suites.
+Jest did not exit one second after the test run has completed.
+
+'This usually means that there are asynchronous operations that weren't stopped in your tests. Consider running Jest with `--detectOpenHandles` to troubleshoot 
+this issue.

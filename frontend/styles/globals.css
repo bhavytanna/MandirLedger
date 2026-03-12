@@ -1,0 +1,361 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Cinzel:wght@400;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Base ────────────────────────────────────────────────── */
+html, body {
+  height: 100%;
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+body {
+  background: #fff8ee;
+  color: #2d1200;
+}
+
+html.dark body {
+  background: #0A0612;
+  color: #fcefd6;
+}
+
+/* ─── Divine Animated Background ──────────────────────────────────────────────────── */
+.app-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(900px circle at 10% 10%, rgba(245, 158, 11, 0.18), transparent 55%),
+    radial-gradient(800px circle at 85% 15%, rgba(239, 68, 68, 0.12), transparent 55%),
+    radial-gradient(700px circle at 50% 90%, rgba(251, 191, 36, 0.14), transparent 55%),
+    linear-gradient(180deg, #fffbf0 0%, #fff7e6 60%, #fffbf0 100%);
+  animation: appBgFloat 20s ease-in-out infinite alternate;
+}
+
+html.dark .app-bg {
+  background:
+    radial-gradient(900px circle at 15% 8%, rgba(245, 158, 11, 0.15), transparent 55%),
+    radial-gradient(800px circle at 85% 18%, rgba(239, 68, 68, 0.12), transparent 55%),
+    radial-gradient(700px circle at 50% 95%, rgba(236, 72, 153, 0.10), transparent 60%),
+    radial-gradient(500px circle at 30% 60%, rgba(99, 102, 241, 0.08), transparent 55%),
+    linear-gradient(180deg, #0A0612 0%, #110822 50%, #0A0612 100%);
+}
+
+/* Divine Om watermark pattern */
+.app-bg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle at 25% 35%, rgba(251, 191, 36, 0.22) 0%, transparent 45%),
+    radial-gradient(circle at 80% 65%, rgba(239, 68, 68, 0.14) 0%, transparent 45%);
+  mix-blend-mode: screen;
+  opacity: 0.5;
+  filter: blur(20px);
+  animation: appGlowDrift 24s ease-in-out infinite alternate;
+}
+
+html.dark .app-bg::before {
+  background-image:
+    radial-gradient(circle at 25% 35%, rgba(245, 158, 11, 0.18) 0%, transparent 45%),
+    radial-gradient(circle at 75% 65%, rgba(236, 72, 153, 0.15) 0%, transparent 45%);
+  opacity: 0.8;
+}
+
+/* Subtle lotus/geometric textile pattern overlay */
+.app-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='.12'/%3E%3C/svg%3E");
+  opacity: 0.12;
+  mix-blend-mode: soft-light;
+  animation: appGrainMove 10s steps(6) infinite;
+}
+
+html.dark .app-bg::after {
+  opacity: 0.18;
+}
+
+/* ─── Gradient Text ─────────────────────────────────────── */
+.gradient-text {
+  background: linear-gradient(135deg, #f59e0b 0%, #ef4444 50%, #ec4899 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+html.dark .gradient-text {
+  background: linear-gradient(135deg, #fbbf24 0%, #f87171 50%, #f472b6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ─── Button Utilities ──────────────────────────────────────────────────────────────────────── */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1.4rem;
+  border-radius: 0.75rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #f59e0b 0%, #ea580c 50%, #dc2626 100%);
+  background-size: 200% 100%;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 18px -3px rgba(245, 158, 11, 0.55), inset 0 1px 0 rgba(255,255,255,0.2);
+  position: relative;
+  overflow: hidden;
+  letter-spacing: 0.03em;
+}
+
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.2), transparent 60%);
+  opacity: 0;
+  transition: opacity 0.25s;
+}
+
+.btn-primary::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -60%;
+  width: 30%;
+  height: 200%;
+  background: rgba(255,255,255,0.25);
+  transform: skewX(-20deg);
+  transition: left 0.5s ease;
+}
+
+.btn-primary:hover::before { opacity: 1; }
+.btn-primary:hover::after  { left: 130%; }
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 28px -4px rgba(245, 158, 11, 0.65), inset 0 1px 0 rgba(255,255,255,0.25); }
+.btn-primary:active { transform: translateY(0); }
+.btn-primary:disabled { opacity: 0.55; cursor: not-allowed; transform: none; }
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1.4rem;
+  border-radius: 0.75rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  background: rgba(251, 191, 36, 0.08);
+  color: #b45309;
+  border: 1.5px solid rgba(245, 158, 11, 0.6);
+  cursor: pointer;
+  transition: all 0.25s;
+  letter-spacing: 0.02em;
+  backdrop-filter: blur(6px);
+}
+
+.btn-secondary:hover {
+  background: rgba(245, 158, 11, 0.14);
+  border-color: #f59e0b;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px -4px rgba(245, 158, 11, 0.3);
+}
+
+html.dark .btn-secondary {
+  color: #fbbf24;
+  border-color: rgba(245, 158, 11, 0.5);
+  background: rgba(245, 158, 11, 0.08);
+}
+
+html.dark .btn-secondary:hover {
+  background: rgba(245, 158, 11, 0.18);
+  border-color: #fbbf24;
+}
+
+/* ─── Sacred Marquee Banner (Removed, maintained class for reference only if needed) ── */
+.sacred-banner {
+  background: linear-gradient(90deg, #b45309, #d97706, #f59e0b, #ef4444, #dc2626, #b45309);
+  background-size: 200% 100%;
+  animation: bannerGlow 6s linear infinite;
+  color: white;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  padding: 5px 0;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+/* ─── Badge ─────────────────────────────────────────────── */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.2rem 0.6rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+/* ─── Nav Active Indicator ──────────────────────────────── */
+.nav-active {
+  position: relative;
+  color: #d97706;
+}
+
+html.dark .nav-active {
+  color: #fbbf24;
+}
+
+.nav-active::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, #f59e0b, #ef4444);
+}
+
+/* ─── Stat Card accent top border ──────────────────────────────────────────────────────────────── */
+.stat-card-amber { border-top: 3px solid #f59e0b; }
+.stat-card-green { border-top: 3px solid #22c55e; }
+.stat-card-rose  { border-top: 3px solid #f43f5e; }
+
+/* ─── Divine Card ─────────────────────────────────────────────────────────────── */
+.divine-card {
+  background: rgba(255, 255, 255, 0.82);
+  border: 1px solid rgba(245, 158, 11, 0.2);
+  backdrop-filter: blur(16px);
+  border-radius: 1.25rem;
+  box-shadow:
+    0 4px 24px rgba(245, 158, 11, 0.10),
+    0 1px 4px rgba(0,0,0,0.04),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+
+.divine-card:hover {
+  transform: translateY(-3px);
+  box-shadow:
+    0 12px 36px rgba(245, 158, 11, 0.18),
+    0 2px 8px rgba(0,0,0,0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+html.dark .divine-card {
+  background: rgba(16, 9, 28, 0.8);
+  border-color: rgba(245, 158, 11, 0.3);
+  box-shadow:
+    0 4px 24px rgba(245, 158, 11, 0.15),
+    0 1px 4px rgba(0,0,0,0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+html.dark .divine-card:hover {
+  box-shadow:
+    0 12px 36px rgba(245, 158, 11, 0.25),
+    0 2px 8px rgba(0,0,0,0.6);
+  border-color: rgba(245, 158, 11, 0.5);
+}
+
+/* ─── Lotus Divider ──────────────────────────────────────────────────────────── */
+.lotus-divider {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 0.25rem 0;
+}
+.lotus-divider::before,
+.lotus-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(245,158,11,0.4), transparent);
+}
+.lotus-divider span {
+  font-size: 0.9em;
+  color: #d97706;
+}
+
+/* ─── Keyframes ─────────────────────────────────────────── */
+@keyframes appBgFloat {
+  0%   { transform: translate3d(0, 0, 0) scale(1); }
+  100% { transform: translate3d(0, -18px, 0) scale(1.03); }
+}
+
+@keyframes appGlowDrift {
+  0%   { transform: translate3d(-10px, 0, 0) scale(1); }
+  100% { transform: translate3d(14px, -14px, 0) scale(1.04); }
+}
+
+@keyframes appGrainMove {
+  0%   { transform: translate3d(0, 0, 0); }
+  100% { transform: translate3d(-40px, -30px, 0); }
+}
+
+@keyframes shimmer {
+  from { background-position: -400px 0; }
+  to   { background-position: 400px 0; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fadeIn  { animation: fadeIn 0.4s ease; }
+.animate-slideUp { animation: slideUp 0.4s ease; }
+
+/* ─── Scrollbar ─────────────────────────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: linear-gradient(180deg, #f59e0b, #ef4444); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: linear-gradient(180deg, #d97706, #dc2626); }
+
+/* ─── Header Sacred Glass ────────────────────────────────────────────── */
+.sacred-header {
+  background: rgba(255, 251, 238, 0.85);
+  backdrop-filter: blur(24px) saturate(1.5);
+  border-bottom: 1px solid rgba(245, 158, 11, 0.25);
+  box-shadow: 0 2px 20px rgba(245, 158, 11, 0.10), 0 1px 0 rgba(255,255,255,0.6) inset;
+}
+
+html.dark .sacred-header {
+  background: rgba(10, 6, 18, 0.85);
+  border-bottom: 1px solid rgba(245, 158, 11, 0.3);
+  box-shadow: 0 4px 24px rgba(245, 158, 11, 0.15), 0 1px 0 rgba(255,255,255,0.08) inset;
+}
+
+/* ─── Divine Pulse Ring ───────────────────────────────────────────── */
+.divine-ring {
+  position: relative;
+}
+.divine-ring::before {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: inherit;
+  background: conic-gradient(from 0deg, #f59e0b, #ef4444, #ec4899, #f59e0b);
+  z-index: -1;
+  animation: ringRotate 4s linear infinite;
+  opacity: 0.7;
+  filter: blur(3px);
+}
+@keyframes ringRotate {
+  to { transform: rotate(360deg); }
+}

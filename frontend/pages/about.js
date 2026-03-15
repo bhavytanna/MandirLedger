@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import Layout from '../components/Layout';
 
 export default function About() {
@@ -27,15 +26,11 @@ export default function About() {
           <div className="md:col-span-4 flex justify-center">
             <div className="relative w-48 h-48 md:w-64 md:h-64 rounded-full p-2" style={{ background: 'linear-gradient(135deg, #f59e0b, #dc2626)' }}>
               <div className="w-full h-full rounded-full overflow-hidden bg-stone-900 border-4 border-stone-900 relative">
-                 <Image 
-                   src="/creator.jpg" 
-                   alt="Bhavy Tanna"
-                   fill
-                   unoptimized
-                   priority
-                   sizes="(max-width: 768px) 192px, 256px"
-                   className="object-cover object-[center_20%] scale-[1.15]"
-                 />
+                <img
+                  src="/creator.jpg"
+                  alt="Bhavy Tanna"
+                  className="absolute inset-0 w-full h-full object-cover object-[center_20%] scale-[1.15]"
+                />
               </div>
               {/* Divine pulse ring behind image */}
               <div className="absolute inset-0 rounded-full bg-amber-500/20 blur-xl -z-10 animate-pulse-slow"></div>

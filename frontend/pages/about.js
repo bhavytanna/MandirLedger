@@ -31,6 +31,9 @@ export default function About() {
                    src="/creator.jpg" 
                    alt="Bhavy Tanna"
                    fill
+                   unoptimized
+                   priority
+                   sizes="(max-width: 768px) 192px, 256px"
                    className="object-cover object-[center_20%] scale-[1.15]"
                  />
               </div>

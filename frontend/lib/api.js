@@ -1,6 +1,25 @@
 import { getToken } from './auth';
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:5000';
+function resolveApiBaseUrl() {
+  const fromEnv =
+    process.env.NEXT_PUBLIC_API_BASE_URL ||
+    process.env.NEXT_PUBLIC_API_BASE_URL ||
+    process.env.NEXT_PUBLIC_API_URL ||
+    process.env.NEXT_PUBLIC_BACKEND_URL;
+
+  if (fromEnv) return fromEnv;
+
+  if (typeof window !== 'undefined') {
+    const host = String(window.location?.hostname || '').toLowerCase();
+    if (host && host !== 'localhost' && host !== '127.0.0.1') {
+      return 'https://mandirledger.onrender.com';
+    }
+  }
+
+  return 'http://localhost:5000';
+}
+
+const API_BASE_URL = resolveApiBaseUrl();
 
 export async function apiRequest(path, { method = 'GET', body } = {}) {
   const token = getToken();

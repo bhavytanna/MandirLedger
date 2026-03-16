@@ -1,7 +1,11 @@
 import Layout from '../components/Layout';
+import { useState } from 'react';
 
 export default function About() {
-  const creatorImageUrl = process.env.NEXT_PUBLIC_CREATOR_IMAGE_URL || '/creator.jpg';
+  const githubRaw = 'https://raw.githubusercontent.com/bhavytanna/MandirLedger/main/frontend/public/creator.jpg';
+  const initialUrl = process.env.NEXT_PUBLIC_CREATOR_IMAGE_URL || githubRaw;
+  const [creatorImageUrl, setCreatorImageUrl] = useState(initialUrl);
+  const [fallbackTried, setFallbackTried] = useState(false);
   return (
     <Layout title="About the Creator">
 
@@ -30,6 +34,13 @@ export default function About() {
                 <img
                   src={creatorImageUrl}
                   alt="Bhavy Tanna"
+                  referrerPolicy="no-referrer"
+                  onError={() => {
+                    if (!fallbackTried) {
+                      setFallbackTried(true);
+                      setCreatorImageUrl(githubRaw);
+                    }
+                  }}
                   className="absolute inset-0 w-full h-full object-cover object-[center_20%] scale-[1.15]"
                 />
               </div>

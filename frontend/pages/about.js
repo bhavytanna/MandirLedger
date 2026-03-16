@@ -1,6 +1,7 @@
 import Layout from '../components/Layout';
 
 export default function About() {
+  const creatorImageUrl = process.env.NEXT_PUBLIC_CREATOR_IMAGE_URL || '/creator.jpg';
   return (
     <Layout title="About the Creator">
 
@@ -27,7 +28,7 @@ export default function About() {
             <div className="relative w-48 h-48 md:w-64 md:h-64 rounded-full p-2" style={{ background: 'linear-gradient(135deg, #f59e0b, #dc2626)' }}>
               <div className="w-full h-full rounded-full overflow-hidden bg-stone-900 border-4 border-stone-900 relative">
                 <img
-                  src="/creator.jpg"
+                  src={creatorImageUrl}
                   alt="Bhavy Tanna"
                   className="absolute inset-0 w-full h-full object-cover object-[center_20%] scale-[1.15]"
                 />

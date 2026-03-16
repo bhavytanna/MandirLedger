@@ -134,10 +134,10 @@ export default function Landing() {
 
       {/* ── Top Navigation Bar ─────────────────────────────── */}
       <nav className="sticky top-0 z-50 sacred-header">
-        <div className="max-w-7xl mx-auto px-5 py-3 flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-2.5 group">
+        <div className="max-w-7xl mx-auto px-3 sm:px-5 py-3 flex items-center justify-between">
+          <Link href="/" className="flex items-center gap-2 sm:gap-2.5 group">
             <div className="om-pulse group-hover:scale-110 transition-transform duration-300">
-              <OmLogo size={38} />
+              <OmLogo size={34} />
             </div>
             <div className="flex flex-col leading-none">
               <span
@@ -152,7 +152,7 @@ export default function Landing() {
             </div>
           </Link>
 
-          <div className="flex items-center gap-2.5">
+          <div className="flex items-center gap-2 sm:gap-2.5">
             <button
               onClick={toggleTheme}
               className="p-2 rounded-xl text-amber-600 dark:text-amber-400
@@ -163,7 +163,7 @@ export default function Landing() {
             >
               {theme === 'dark' ? <SunIcon /> : <MoonIcon />}
             </button>
-            <Link href="/login" className="btn-primary text-sm px-4 py-2">
+            <Link href="/login" className="btn-primary text-sm px-3 sm:px-4 py-2">
               🙏 Login
             </Link>
           </div>
@@ -171,7 +171,7 @@ export default function Landing() {
       </nav>
 
       {/* ── Hero Section ───────────────────────────────────── */}
-      <section className="relative max-w-6xl mx-auto px-5 pt-16 pb-10 text-center animate-slideUp">
+      <section className="relative max-w-6xl mx-auto px-6 sm:px-5 pt-16 pb-10 text-center animate-slideUp">
 
         {/* Floating lotus petals decoration */}
         <div className="absolute top-8 left-8 text-4xl opacity-20 dark:opacity-10 animate-float select-none">🪷</div>
@@ -197,9 +197,9 @@ export default function Landing() {
               <OmLogo size={90} />
             </div>
           </div>
-          <div>
+          <div className="w-full max-w-[260px] sm:max-w-[320px] md:max-w-none mx-auto">
             <h1
-              className="text-5xl md:text-7xl font-extrabold tracking-tight leading-tight gradient-text divine-glow"
+              className="w-full max-w-full text-[clamp(1.45rem,7.6vw,2.25rem)] sm:text-5xl md:text-7xl font-extrabold tracking-[-0.02em] sm:tracking-tight leading-[1.02] sm:leading-tight gradient-text divine-glow px-2 whitespace-normal"
               style={{ fontFamily: "'Cinzel', serif" }}
             >
               MandirLedger
@@ -221,12 +221,12 @@ export default function Landing() {
         </p>
 
         {/* CTA Buttons */}
-        <div className="flex flex-wrap gap-3 justify-center mb-14">
-          <Link href="/contributor" className="btn-primary text-base px-7 py-3.5 rounded-xl">
+        <div className="flex flex-col sm:flex-row flex-wrap gap-3 justify-center mb-14">
+          <Link href="/contributor" className="btn-primary text-base px-7 py-3.5 rounded-xl w-full sm:w-auto justify-center">
             <span className="flame">🪔</span>
             Make a Donation
           </Link>
-          <Link href="/dashboard" className="btn-secondary text-base px-7 py-3.5 rounded-xl">
+          <Link href="/dashboard" className="btn-secondary text-base px-7 py-3.5 rounded-xl w-full sm:w-auto justify-center">
             <svg viewBox="0 0 20 20" width="17" height="17" fill="currentColor">
               <path d="M2 4a2 2 0 012-2h3a2 2 0 012 2v3a2 2 0 01-2 2H4a2 2 0 01-2-2V4zm0 9a2 2 0 012-2h3a2 2 0 012 2v3a2 2 0 01-2 2H4a2 2 0 01-2-2v-3zm9-9a2 2 0 012-2h3a2 2 0 012 2v3a2 2 0 01-2 2h-3a2 2 0 01-2-2V4zm0 9a2 2 0 012-2h3a2 2 0 012 2v3a2 2 0 01-2 2h-3a2 2 0 01-2-2v-3z" />
             </svg>
